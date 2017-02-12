@@ -1,0 +1,7 @@
+---
+
+- name: Install shinken receiver
+  yum: name=shinken-receiver state=installed
+
+- name: Ensure that shinken receiver is running
+  service: name=shinken-receiver state=started enabled=yes

@@ -1,0 +1,7 @@
+---
+
+- name: Install shinken poller
+  yum: name=shinken-poller state=installed
+
+- name: Ensure that shinken poller is running
+  service: name=shinken-poller state=started enabled=yes

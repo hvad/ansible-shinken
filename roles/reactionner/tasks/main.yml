@@ -1,0 +1,7 @@
+---
+
+- name: Install shinken reactionner
+  yum: name=shinken-reactionner state=installed
+
+- name: Ensure that shinken reactionner is running
+  service: name=shinken-reactionner state=started enabled=yes

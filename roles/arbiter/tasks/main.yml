@@ -1,0 +1,7 @@
+---
+
+- name: Install shinken arbiter
+  yum: name=shinken-arbiter state=present
+
+- name: Ensure that shinken arbiter is running
+  service: name=shinken-arbiter state=started enabled=yes

@@ -1,0 +1,10 @@
+---
+
+- name: restart httpd
+  service: name=httpd state=restarted
+
+- name: restart shinken broker
+  service: name=shinken-broker state=restarted
+
+- name: restart shinken arbiter
+  service: name=shinken-arbiter state=restarted

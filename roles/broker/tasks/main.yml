@@ -1,0 +1,45 @@
+---
+# This playbook contains plays that will be run on Central nodes.
+
+- name: Install httpd
+  yum: name=httpd state=present
+
+- name: Install mod_ssl
+  yum: name=mod_ssl state=present
+
+- name: Install python pip
+  yum: name=python2-pip state=present
+
+- name: Install mongodb 
+  yum: name=mongodb state=present
+
+- name: Install mongodb-server 
+  yum: name=mongodb-server state=present
+
+- name: Ensure that httpd is running
+  service: name=httpd state=started enabled=yes
+
+- name: Ensure that mongodb is running
+  service: name=mongod state=started enabled=yes
+
+- name: Install Python lib with Pip 
+  command: pip install pymongo>=3.0.3 requests arrow bottle==0.12.8
+
+- name: Shinken initialisation
+  command: shinken --init
+
+- name: Install shinken broker
+  yum: name=shinken-broker state=installed
+
+- name: Shinken initialisation
+  command: shinken --init
+
+- name: Shinken WebUI 2 installation
+  command: shinken install webui2
+
+- name: Configure webui2 to shinken broker 
+  lineinfile: dest=/etc/shinken/brokers/broker-master.cfg create=no state=present regexp="modules" line="    modules webui2"
+  notify: restart shinken arbiter
+  
+- name: restart shinken broker
+  service: name=shinken-broker state=restarted

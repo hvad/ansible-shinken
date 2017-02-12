@@ -1,0 +1,7 @@
+---
+
+- name: Install shinken scheduler
+  yum: name=shinken-scheduler state=installed
+
+- name: Ensure that shinken scheduler is running
+  service: name=shinken-scheduler state=started enabled=yes

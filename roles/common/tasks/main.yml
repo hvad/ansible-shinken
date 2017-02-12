@@ -1,0 +1,37 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Install Selinux Management
+  yum: name={{ item }} state=installed
+  with_items:
+    - libselinux-python
+    - libsemanage-python
+
+- name: set SELinux to permissive
+  action: selinux policy=targeted state=permissive
+
+- name: ensure SELinux is turned off
+  action: command /usr/sbin/setenforce 0
+
+- name: Disable firewalld
+  action: service name=firewalld state=stopped enabled=false
+
+- name: Install chrony
+  yum: name=chrony state=present
+
+- name: Ensure that chronyd is running
+  service: name=chronyd state=started enabled=yes
+
+- name: Install snmpd
+  yum: name=net-snmp state=present
+
+- name: Set snmpd configuration
+  template: src=snmpd.conf.j2 dest=/etc/snmp/snmpd.conf owner=root group=root
+  notify:
+    - restart snmpd
+
+- name: Ensure that snmpd is running
+  service: name=snmpd state=started enabled=yes
+
+- name: Set EPEL repository.
+  yum: name=epel-release state=installed

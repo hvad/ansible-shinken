@@ -1,0 +1,50 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+- name: Arbiter
+  hosts: arbiter
+  remote_user: root
+
+  roles:
+    - common
+    - arbiter
+
+- name: Broker
+  hosts: broker
+  remote_user: root
+
+  roles:
+    - common
+    - broker
+
+- name: Scheduler
+  hosts: scheduler 
+  remote_user: root
+
+  roles:
+    - common
+    - scheduler
+
+- name: Poller
+  hosts: poller 
+  remote_user: root
+
+  roles:
+    - common
+    - poller
+
+- name: Reactionner
+  hosts: reactionner
+  remote_user: root
+
+  roles:
+    - common
+    - reactionner
+
+- name: Receiver
+  hosts: receiver
+  remote_user: root
+
+  roles:
+    - common
+    - receiver
