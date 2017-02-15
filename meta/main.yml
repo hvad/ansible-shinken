@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: David Hannequin
+  description: Playbook Ansible install Shinken 2.4.x with WebUI 2 on CentOS 7 (RPM version).
+  license: GPLv3
+  min_ansible_version: 2.2
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags:
+    - shinken
+    - installer
+    - monitoring
