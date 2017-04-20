@@ -9,8 +9,8 @@ These playbooks were tested on CentOS 7.x so we recommend
 that you use CentOS or RHEL to test these modules.
 
 These playbooks can deploy a simple all-in-one Shinken server or a distributed 
-infrastructure with on Central, many Pollers. The inventory file 'hosts' defines 
-the nodes in which the stacks should be configured.
+infrastructure. The inventory file 'hosts' defines the nodes in which the 
+stacks should be configured.
 
         [arbiter]
         arbiter
