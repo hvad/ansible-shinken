@@ -35,3 +35,6 @@
 
 - name: Set EPEL repository.
   yum: name=epel-release state=installed
+
+- name: Install xmail
+  yum: name=mailx state=present
